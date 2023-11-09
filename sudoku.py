@@ -11,24 +11,18 @@ def is_valid(board, row, col, num):
         Returns:
             bool: True if the placement is valid, False otherwise.
     """
-    # Check if 'num' is not in the given 'row'
-    for x in range(9):
-        if board[row][x] == num:
+    for j in range(9):
+        if board[row][j] == num:
             return False
-
-    # Check if 'num' is not in the given 'col'
-    for x in range(9):
-        if board[x][col] == num:
+    for i in range(9):
+        if board[i][col] == num:
             return False
-
-    # Check if 'num' is not in the given 3x3 box
     start_row = row - row % 3
     start_col = col - col % 3
     for i in range(3):
         for j in range(3):
             if board[i + start_row][j + start_col] == num:
                 return False
-
     return True
 
 
@@ -44,20 +38,16 @@ def solve_sudoku(board):
     """
     empty = find_empty(board)
     if not empty:
-        return True  # If no empty space is left, we've solved the puzzle
+        return True
     else:
         row, col = empty
-
     for num in range(1, 10):
         if is_valid(board, row, col, num):
             board[row][col] = num
-
-            if solve_sudoku(board):  # Recursive call with the updated board
+            if solve_sudoku(board):
                 return True
-
-            board[row][col] = 0  # If failed, reset the cell and backtrack
-
-    return False  # Trigger backtracking
+            board[row][col] = 0
+    return False #Trigger for recursive backtrack
 
 
 def find_empty(board):
@@ -70,11 +60,10 @@ def find_empty(board):
         Returns:
             tuple: A tuple (row, col) representing the next empty spot on the board. None if no empty spots are available.
     """
-    # Find an empty cell in the board (denoted by 0)
     for i in range(len(board)):
         for j in range(len(board[0])):
             if board[i][j] == 0:
-                return i, j  # row, col
+                return i, j
 
 
 def print_board(board, i):
@@ -88,7 +77,6 @@ def print_board(board, i):
         Returns:
             None
     """
-    # Print the sudoku board
     for i in range(len(board)):
         if i % 3 == 0 and i != 0:
             print('-' * 23)
@@ -111,7 +99,6 @@ def read_puzzle(file_path):
        Returns:
            list of list of int: The read Sudoku puzzle represented as a 2D list.
     """
-    # Read a sudoku puzzle from a text file
     with open(file_path, 'r') as f:
         puzzle = [[0 if num == '_' else int(num) for num in line.split()] for line in f]
     return puzzle
