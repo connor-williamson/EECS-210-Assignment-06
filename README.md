@@ -1,4 +1,4 @@
-# EECS-210-Assignment-06-Connor-Williamson-3075548
+# EECS-210-Assignment-06
 
 # Sudoku Solver
 
