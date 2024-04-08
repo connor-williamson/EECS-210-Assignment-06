@@ -1,5 +1,3 @@
-# EECS-210-Assignment-06
-
 # Sudoku Solver
 
 This project consists of a Python script that automates the process of solving Sudoku puzzles. It reads puzzles from text files, solves them using a backtracking algorithm, and outputs the solutions to the console and writes them to text files.
